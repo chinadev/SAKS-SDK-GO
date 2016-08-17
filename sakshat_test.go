@@ -16,6 +16,7 @@ func TestLEDRow(t *testing.T) {
 		time.Sleep(time.Second)
 		LEDRow.OffForIndex(i)
 	}
+	time.Sleep(time.Second)
 
 	// Test for SetRow
 	LED1 := [8]bool{false, true, false, true, false, true, false, true}
@@ -27,5 +28,6 @@ func TestLEDRow(t *testing.T) {
 
 	// Test for All
 	LEDRow.On()
+	time.Sleep(time.Second)
 	LEDRow.Off()
 }
