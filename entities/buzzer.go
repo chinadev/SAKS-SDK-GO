@@ -11,17 +11,13 @@ type Buzzer struct {
 	IsOn bool
 }
 
-func (b *Buzzer) IsOn() bool {
-	return b.IsOn
-}
-
 func (b *Buzzer) On() {
-	b.Pin.Write(b.realTrue)
+	b.Pin.Write(b.RealTrue)
 	b.IsOn = true
 }
 
 func (b *Buzzer) Off() {
-	b.Pin.Write(!b.realTrue)
+	b.Pin.Write(!b.RealTrue)
 	b.IsOn = false
 }
 
