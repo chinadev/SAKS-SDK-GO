@@ -5,6 +5,11 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"./entities"
+)
+
+var (
+	Buzzer *entities.Buzzer
 )
 
 func SaksGpioInit() {
@@ -14,19 +19,19 @@ func SaksGpioInit() {
 	}
 
 	process := []rpio.Pin{IC_TM1637_DI, IC_TM1637_CLK, IC_74HC595_DS, IC_74HC595_SHCP, IC_74HC595_STCP}
-	for p := range(process) {
+	for p := range (process) {
 		process[p].Output()
 		process[p].Low()
 	}
 
 	process = []rpio.Pin{BUZZER, TACT_RIGHT, TACT_LEFT, DIP_SWITCH_1, DIP_SWITCH_2}
-	for p := range(process) {
+	for p := range (process) {
 		process[p].Output()
 		process[p].High()
 	}
 
 	process = []rpio.Pin{TACT_RIGHT, TACT_LEFT, DIP_SWITCH_1, DIP_SWITCH_2}
-	for p := range(process) {
+	for p := range (process) {
 		process[p].Input()
 		process[p].PullUp()
 	}
@@ -43,4 +48,9 @@ func init() {
 		}
 	}()
 	SaksGpioInit()
+	Buzzer = &entities.Buzzer{
+		Pin:      BUZZER,
+		RealTrue: rpio.Low,
+		IsOn:     false,
+	}
 }

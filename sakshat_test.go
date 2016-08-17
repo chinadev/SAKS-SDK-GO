@@ -6,8 +6,5 @@ import (
 )
 
 func TestBuzzer(t *testing.T) {
-	for x := 0; x < 6; x++ {
-		BUZZER.Toggle()
-		time.Sleep(time.Second / 5)
-	}
+	Buzzer.BeepAction(time.Second / 5, time.Second / 5, 3)
 }
