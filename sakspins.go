@@ -2,11 +2,10 @@ package sakshat
 
 import (
 	"github.com/stianeikeland/go-rpio"
-	"github.com/hanbang-wang/gpio"
 )
 
 const (
-	IC_74HC595_DS gpio.Pin = rpio.Pin(6)
+	IC_74HC595_DS rpio.Pin = rpio.Pin(6)
 	IC_74HC595_SHCP = rpio.Pin(19)
 	IC_74HC595_STCP = rpio.Pin(13)
 

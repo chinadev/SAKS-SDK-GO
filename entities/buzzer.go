@@ -17,7 +17,7 @@ func (b *Buzzer) On() {
 }
 
 func (b *Buzzer) Off() {
-	b.Pin.Write(!b.RealTrue)
+	b.Pin.Write(b.RealTrue ^ 1)
 	b.IsOn = false
 }
 
