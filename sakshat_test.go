@@ -18,8 +18,8 @@ func TestLEDRow(t *testing.T) {
 	}
 
 	// Test for SetRow
-	LED1 := [8]bool{0, 1, 0, 1, 0, 1, 0, 1}
-	LED2 := [8]bool{1, 0, 1, 0, 1, 0, 1, 0}
+	LED1 := [8]bool{false, true, false, true, false, true, false, true}
+	LED2 := [8]bool{true, false, true, false, true, false, true, false}
 	LEDRow.SetRow(LED1)
 	time.Sleep(time.Second)
 	LEDRow.SetRow(LED2)
