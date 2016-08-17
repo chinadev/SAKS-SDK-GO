@@ -26,6 +26,10 @@ func TestLEDRow(t *testing.T) {
 	LEDRow.SetRow(LED2)
 	time.Sleep(time.Second)
 
+	// Test for status acquiring
+	LED3 := LEDRow.RowStatus()
+	t.Log(LED2 == LED3)
+
 	// Test for All
 	LEDRow.On()
 	time.Sleep(time.Second)
