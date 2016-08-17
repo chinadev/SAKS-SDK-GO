@@ -11,10 +11,10 @@ func (d *Led74HC595) IsOn(index uint) bool {
 	return (d.IC.Data >> index) & 0x01 != 0
 }
 
-func (d *Led74HC595) RowStatus() []bool {
-	var r []bool
+func (d *Led74HC595) RowStatus() [8]bool {
+	r := make([]bool, 8)
 	for i := uint(0); i < 8; i++ {
-		r = append(r, d.IsOn(i))
+		r[i] = d.IsOn(i)
 	}
 	return r
 }

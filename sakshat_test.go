@@ -28,7 +28,7 @@ func TestLEDRow(t *testing.T) {
 
 	// Test for status acquiring
 	LED3 := LEDRow.RowStatus()
-	t.Log(LED2 == LED3)
+	t.Logf("The result of status acquiring: %t", LED2 == LED3)
 
 	// Test for All
 	LEDRow.On()
