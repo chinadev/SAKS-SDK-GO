@@ -23,14 +23,14 @@ func (d *IC_74HC595) SetBit(bit rpio.State) {
 	d.FlushSHCP()
 }
 
-func (d *IC_74HC595) SetDate(data uint8) {
+func (d *IC_74HC595) SetData(data uint8) {
 	d.Data = data
 	for i := 0; i < 8; i++ {
-		d.SetBit((d.Data >> uint(i)) & 0x01)
+		d.SetBit(rpio.State((d.Data >> uint(i)) & 0x01))
 	}
 	d.FlushSTCP()
 }
 
 func (d *IC_74HC595) Clear() {
-	d.SetDate(0x00)
+	d.SetData(0x00)
 }
