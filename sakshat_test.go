@@ -5,6 +5,10 @@ import (
 	"time"
 )
 
-func TestBuzzer(t *testing.T) {
-	Buzzer.BeepAction(time.Second / 5, time.Second / 5, 3)
+func TestLEDRow(t *testing.T) {
+	for i := 0; i < 8; i++ {
+		LEDRow.OnForIndex(i)
+		time.Sleep(time.Second * 2)
+		LEDRow.OffForIndex(i)
+	}
 }
