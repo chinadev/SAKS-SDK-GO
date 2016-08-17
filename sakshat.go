@@ -3,7 +3,6 @@ package sakshat
 import (
 	"github.com/stianeikeland/go-rpio"
 	"log"
-	"time"
 	"os"
 	"os/signal"
 )
@@ -37,7 +36,7 @@ func init() {
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt)
 	go func() {
-		for range c {
+		for _ = range c {
 			log.Println("Closing pins and terminating program...")
 			rpio.Close()
 			os.Exit(0)
