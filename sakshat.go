@@ -13,19 +13,19 @@ func SaksGpioInit() {
 		log.Fatal(err)
 	}
 
-	process := []*rpio.Pin{&IC_TM1637_DI, &IC_TM1637_CLK, &IC_74HC595_DS, &IC_74HC595_SHCP, &IC_74HC595_STCP}
+	process := []rpio.Pin{IC_TM1637_DI, IC_TM1637_CLK, IC_74HC595_DS, IC_74HC595_SHCP, IC_74HC595_STCP}
 	for p := range(process) {
 		process[p].Output()
 		process[p].Low()
 	}
 
-	process = []*rpio.Pin{&BUZZER, &TACT_RIGHT, &TACT_LEFT, &DIP_SWITCH_1, &DIP_SWITCH_2}
+	process = []rpio.Pin{BUZZER, TACT_RIGHT, TACT_LEFT, DIP_SWITCH_1, DIP_SWITCH_2}
 	for p := range(process) {
 		process[p].Output()
 		process[p].High()
 	}
 
-	process = []*rpio.Pin{&TACT_RIGHT, &TACT_LEFT, &DIP_SWITCH_1, &DIP_SWITCH_2}
+	process = []rpio.Pin{TACT_RIGHT, TACT_LEFT, DIP_SWITCH_1, DIP_SWITCH_2}
 	for p := range(process) {
 		process[p].Input()
 		process[p].PullUp()
