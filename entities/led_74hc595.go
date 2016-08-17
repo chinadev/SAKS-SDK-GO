@@ -12,7 +12,7 @@ func (d *Led74HC595) IsOn(index uint) bool {
 }
 
 func (d *Led74HC595) RowStatus() [8]bool {
-	r := make([]bool, 8)
+	var r [8]bool
 	for i := uint(0); i < 8; i++ {
 		r[i] = d.IsOn(i)
 	}
