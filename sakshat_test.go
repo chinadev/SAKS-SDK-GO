@@ -6,7 +6,7 @@ import (
 )
 
 func TestLEDRow(t *testing.T) {
-	for i := 0; i < 8; i++ {
+	for i := uint(0); i < 8; i++ {
 		LEDRow.OnForIndex(i)
 		time.Sleep(time.Second * 2)
 		LEDRow.OffForIndex(i)

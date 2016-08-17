@@ -13,8 +13,8 @@ func (d *Led74HC595) IsOn(index uint) bool {
 
 func (d *Led74HC595) RowStatus() []bool {
 	var r []bool
-	for i := 0; i < 8; i++ {
-		r = append(r, (d.IC.Data >> uint(i)) & 0x01 != 0)
+	for i := uint(0); i < 8; i++ {
+		r = append(r, (d.IC.Data >> i) & 0x01 != 0)
 	}
 	return r
 }

@@ -25,8 +25,8 @@ func (d *IC_74HC595) SetBit(bit rpio.State) {
 
 func (d *IC_74HC595) SetData(data uint8) {
 	d.Data = data
-	for i := 0; i < 8; i++ {
-		d.SetBit(rpio.State((d.Data >> uint(i)) & 0x01))
+	for i := uint(0); i < 8; i++ {
+		d.SetBit(rpio.State((d.Data >> i) & 0x01))
 	}
 	d.FlushSTCP()
 }
