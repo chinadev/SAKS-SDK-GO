@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	numberCode = []uint8{0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f, 0x00, 0x40}
-	addressCode = []uint8{0xc0, 0xc1, 0xc2, 0xc3}
+	numberCode = [12]uint8{0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f, 0x00, 0x40}
+	addressCode = [4]uint8{0xc0, 0xc1, 0xc2, 0xc3}
 )
 
 type DigitalDisplayTM1637 struct {
@@ -23,7 +23,7 @@ func (d *DigitalDisplayTM1637) SetNumbers(value string) {
 	matches := pattern.FindAllString(value, -1)
 	d.Numbers = []string{}
 	for i := range (matches) {
-		append(d.Numbers, matches[i])
+		d.Numbers = append(d.Numbers, matches[i])
 	}
 }
 
@@ -40,21 +40,11 @@ func (d *DigitalDisplayTM1637) Off() {
 func (d *DigitalDisplayTM1637) Show(str string) {
 	d.SetNumbers(str)
 	d.IC.SetCommand(0x44)
-	func() int {
-		l := len(d.Numbers)
-		if l > 4 {
-			return 4
-		}
-		return l
+	lower := len(d.Numbers)
+	if lower > 4 {
+		lower = 4
 	}
-	lower := func() int {
-		l := len(d.Numbers)
-		if l > 4 {
-			return 4
-		}
-		return l
-	}
-	for i := uint(0); i < lower; i++ {
+	for i := 0; i < lower; i++ {
 		dp := strings.Count(d.Numbers[i], ".") > 0
 		num := strings.Replace(d.Numbers[i], ".", "", -1)
 		var after int
