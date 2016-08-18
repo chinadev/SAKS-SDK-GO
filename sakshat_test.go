@@ -35,3 +35,12 @@ func TestLEDRow(t *testing.T) {
 	time.Sleep(time.Second)
 	LEDRow.Off()
 }
+
+func TestDigitalDisplay(t *testing.T) {
+	// normal display test
+	cases := []string{"0000", "5678", "-999", "1.2.3.4.", "12.34"}
+	for i := range(cases) {
+		DigitalDisplay.Show(cases[i])
+		time.Sleep(time.Second)
+	}
+}

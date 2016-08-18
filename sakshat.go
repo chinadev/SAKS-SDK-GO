@@ -9,8 +9,9 @@ import (
 )
 
 var (
-	Buzzer *entities.Buzzer
-	LEDRow *entities.Led74HC595
+	Buzzer         *entities.Buzzer
+	LEDRow         *entities.Led74HC595
+	DigitalDisplay *entities.DigitalDisplayTM1637
 )
 
 func SaksGpioInit() {
@@ -52,13 +53,17 @@ func init() {
 	Buzzer = &entities.Buzzer{
 		Pin:      BUZZER,
 		RealTrue: rpio.Low,
-		IsOn:     false,
 	}
 	LEDRow = &entities.Led74HC595{
 		IC: &entities.IC_74HC595{
 			Pins:     map[string]rpio.Pin{"ds": IC_74HC595_DS, "shcp": IC_74HC595_SHCP, "stcp": IC_74HC595_STCP},
 			RealTrue: rpio.High,
-			Data:     0x00,
+		},
+	}
+	DigitalDisplay = &entities.DigitalDisplayTM1637{
+		IC: &entities.IC_TM1637{
+			Pins: map[string]rpio.Pin{"di": IC_TM1637_DI, "clk": IC_TM1637_CLK},
+			RealTrue: rpio.High,
 		},
 	}
 }

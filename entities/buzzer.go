@@ -6,9 +6,9 @@ import (
 )
 
 type Buzzer struct {
-	Pin rpio.Pin
+	Pin      rpio.Pin
 	RealTrue rpio.State
-	IsOn bool
+	IsOn     bool
 }
 
 func (b *Buzzer) On() {

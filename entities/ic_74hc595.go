@@ -3,9 +3,9 @@ package entities
 import "github.com/stianeikeland/go-rpio"
 
 type IC_74HC595 struct {
-	Pins map[string]rpio.Pin
+	Pins     map[string]rpio.Pin
 	RealTrue rpio.State
-	Data uint8
+	Data     uint8
 }
 
 func (d *IC_74HC595) FlushSHCP() {
