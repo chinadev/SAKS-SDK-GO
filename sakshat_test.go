@@ -51,7 +51,9 @@ func TestDigitalDisplay(t *testing.T) {
 func TestTemperature(t *testing.T) {
 	// Temperature read test
 	for i := 0; i < 10; i++ {
-		DigitalDisplay.Show(strconv.FormatFloat(Ds18b20.Temperature(0), 'f', -1, 64))
+		readTemp := strconv.FormatFloat(Ds18b20.Temperature(0), 'f', -1, 64)
+		t.Logf("Temperature #%d: %s", i, readTemp)
+		DigitalDisplay.Show(readTemp)
 		time.Sleep(2 * time.Second)
 	}
 }
