@@ -3,6 +3,7 @@ package sakshat
 import (
 	"testing"
 	"time"
+	"strconv"
 )
 
 //func TestBuzzer(t *testing.T) {
@@ -45,4 +46,12 @@ func TestDigitalDisplay(t *testing.T) {
 	}
 
 	DigitalDisplay.Off()
+}
+
+func TestTemperature(t *testing.T) {
+	// Temperature read test
+	for i := 0; i < 10; i++ {
+		DigitalDisplay.Show(strconv.FormatFloat(Ds18b20.Temperature(0), 'f', -1, 64))
+		time.Sleep(2 * time.Second)
+	}
 }

@@ -12,6 +12,7 @@ var (
 	Buzzer         *entities.Buzzer
 	LEDRow         *entities.Led74HC595
 	DigitalDisplay *entities.DigitalDisplayTM1637
+	Ds18b20        *entities.DS18B20
 )
 
 func SaksGpioInit() {
@@ -59,6 +60,9 @@ func init() {
 			Pins:     map[string]rpio.Pin{"ds": IC_74HC595_DS, "shcp": IC_74HC595_SHCP, "stcp": IC_74HC595_STCP},
 			RealTrue: rpio.High,
 		},
+	}
+	Ds18b20 = &entities.DS18B20{
+		Pin: DS18B20,
 	}
 	DigitalDisplay = &entities.DigitalDisplayTM1637{
 		IC: &entities.IC_TM1637{
