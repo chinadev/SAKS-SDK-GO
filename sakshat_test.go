@@ -43,4 +43,6 @@ func TestDigitalDisplay(t *testing.T) {
 		DigitalDisplay.Show(cases[i])
 		time.Sleep(time.Second)
 	}
+
+	DigitalDisplay.Off()
 }
