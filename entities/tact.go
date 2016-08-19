@@ -64,7 +64,7 @@ func (t *Tact) Watching() {
 	for {
 		t.Update()
 		if t.Status != lastStatus {
-			t.NotifyObservers()
+			go t.NotifyObservers()
 			lastStatus = t.Status
 		}
 		time.Sleep(50 * time.Microsecond)
