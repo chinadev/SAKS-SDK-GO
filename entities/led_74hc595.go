@@ -1,7 +1,18 @@
 package entities
 
+import "github.com/stianeikeland/go-rpio"
+
 type Led74HC595 struct {
 	IC *IC_74HC595
+}
+
+func NewLed74HC595(pins map[string]rpio.Pin, realTrue rpio.State) *Led74HC595 {
+	return &Led74HC595{
+		IC: &IC_74HC595{
+			Pins:     pins,
+			RealTrue: realTrue,
+		},
+	}
 }
 
 func (d *Led74HC595) IsOn(index uint) bool {
@@ -37,8 +48,8 @@ func (d *Led74HC595) OffForIndex(index uint) {
 }
 
 func (d *Led74HC595) SetRow(status [8]bool) {
-	for i := range(status) {
-		if status[i] {
+	for i, stat := range(status) {
+		if stat {
 			d.OnForIndex(uint(i))
 		} else {
 			d.OffForIndex(uint(i))

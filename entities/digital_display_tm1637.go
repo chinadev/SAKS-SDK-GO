@@ -5,6 +5,7 @@ import (
 	"strings"
 	"strconv"
 	"log"
+	"github.com/stianeikeland/go-rpio"
 )
 
 var (
@@ -18,12 +19,21 @@ type DigitalDisplayTM1637 struct {
 	IsOn    bool
 }
 
+func NewDigitalDisplayTM1637(pins map[string]rpio.Pin, realTrue rpio.State) *DigitalDisplayTM1637 {
+	return &DigitalDisplayTM1637{
+		IC: &IC_TM1637{
+			Pins:     pins,
+			RealTrue: realTrue,
+		},
+	}
+}
+
 func (d *DigitalDisplayTM1637) SetNumbers(value string) {
 	pattern, _ := regexp.Compile(`[-|#|\d]\.?`)
 	matches := pattern.FindAllString(value, -1)
 	d.Numbers = []string{}
-	for i := range (matches) {
-		d.Numbers = append(d.Numbers, matches[i])
+	for _, i := range (matches) {
+		d.Numbers = append(d.Numbers, i)
 	}
 }
 

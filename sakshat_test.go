@@ -56,4 +56,5 @@ func TestTemperature(t *testing.T) {
 		DigitalDisplay.Show(strconv.FormatFloat(readTemp, 'g', 4, 64))
 		time.Sleep(2 * time.Second)
 	}
+	DigitalDisplay.Off()
 }

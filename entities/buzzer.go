@@ -11,6 +11,13 @@ type Buzzer struct {
 	IsOn     bool
 }
 
+func NewBuzzer(pin rpio.Pin, realTrue rpio.State) *Buzzer {
+	return &Buzzer{
+		Pin:      pin,
+		RealTrue: realTrue,
+	}
+}
+
 func (b *Buzzer) On() {
 	b.Pin.Write(b.RealTrue)
 	b.IsOn = true

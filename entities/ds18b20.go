@@ -15,6 +15,10 @@ type DS18B20 struct {
 	Pin rpio.Pin
 }
 
+func NewDS18B20(pin rpio.Pin) *DS18B20 {
+	return &DS18B20{Pin: pin}
+}
+
 func (d *DS18B20) GetDeviceFile(index int) string {
 	baseDir := `/sys/bus/w1/devices/`
 	result, err := filepath.Glob(baseDir + "28*")

@@ -13,6 +13,9 @@ var (
 	LEDRow         *entities.Led74HC595
 	DigitalDisplay *entities.DigitalDisplayTM1637
 	Ds18b20        *entities.DS18B20
+	TactRow        *entities.TactRow
+
+	TactEventHandler func(rpio.Pin, bool)
 )
 
 func SaksGpioInit() {
@@ -51,23 +54,16 @@ func init() {
 		}
 	}()
 	SaksGpioInit()
-	Buzzer = &entities.Buzzer{
-		Pin:      BUZZER,
-		RealTrue: rpio.Low,
-	}
-	LEDRow = &entities.Led74HC595{
-		IC: &entities.IC_74HC595{
-			Pins:     map[string]rpio.Pin{"ds": IC_74HC595_DS, "shcp": IC_74HC595_SHCP, "stcp": IC_74HC595_STCP},
-			RealTrue: rpio.High,
-		},
-	}
-	Ds18b20 = &entities.DS18B20{
-		Pin: DS18B20,
-	}
-	DigitalDisplay = &entities.DigitalDisplayTM1637{
-		IC: &entities.IC_TM1637{
-			Pins: map[string]rpio.Pin{"di": IC_TM1637_DI, "clk": IC_TM1637_CLK},
-			RealTrue: rpio.High,
-		},
+	Buzzer = entities.NewBuzzer(BUZZER, rpio.Low)
+	LEDRow = entities.NewLed74HC595(map[string]rpio.Pin{"ds": IC_74HC595_DS, "shcp": IC_74HC595_SHCP, "stcp": IC_74HC595_STCP}, rpio.High)
+	Ds18b20 = entities.NewDS18B20(DS18B20)
+	DigitalDisplay = entities.NewDigitalDisplayTM1637(map[string]rpio.Pin{"di": IC_TM1637_DI, "clk": IC_TM1637_CLK}, rpio.High)
+	TactRow = entities.NewTactRow([]rpio.Pin{TACT_LEFT, TACT_RIGHT}, rpio.Low)
+
+}
+
+func OnTactEvent(pin rpio.Pin, status bool) {
+	if TactEventHandler != nil {
+		TactEventHandler(pin, status)
 	}
 }
