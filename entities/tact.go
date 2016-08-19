@@ -55,7 +55,7 @@ func (t *Tact) DeRegister(observer func(rpio.Pin, bool)) {
 
 func (t *Tact) NotifyObservers() {
 	for _, o := range (t.observers) {
-		o(t.Pin, t.Status)
+		go o(t.Pin, t.Status)
 	}
 }
 
