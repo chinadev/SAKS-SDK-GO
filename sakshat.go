@@ -59,7 +59,9 @@ func init() {
 	Ds18b20 = entities.NewDS18B20(DS18B20)
 	DigitalDisplay = entities.NewDigitalDisplayTM1637(map[string]rpio.Pin{"di": IC_TM1637_DI, "clk": IC_TM1637_CLK}, rpio.High)
 	TactRow = entities.NewTactRow([]rpio.Pin{TACT_LEFT, TACT_RIGHT}, rpio.Low)
-
+	for _, t := range(TactRow.Tacts) {
+		t.Register(OnTactEvent)
+	}
 }
 
 func OnTactEvent(pin rpio.Pin, status bool) {
