@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 	"os/signal"
-	"./entities"
+	"github.com/hanbang-wang/SAKS-SDK-GO/entities"
 )
 
 var (

@@ -48,7 +48,7 @@ func (d *Led74HC595) OffForIndex(index uint) {
 }
 
 func (d *Led74HC595) SetRow(status [8]bool) {
-	for i, stat := range(status) {
+	for i, stat := range status {
 		if stat {
 			d.OnForIndex(uint(i))
 		} else {

@@ -32,7 +32,7 @@ func (t *Tact) IsOn() bool {
 }
 
 func (t *Tact) RegisterContains(e func(rpio.Pin, bool)) int {
-	for index, a := range (t.observers) {
+	for index, a := range t.observers {
 		if &a == &e {
 			return index
 		}
@@ -54,7 +54,7 @@ func (t *Tact) DeRegister(observer func(rpio.Pin, bool)) {
 }
 
 func (t *Tact) NotifyObservers() {
-	for _, o := range (t.observers) {
+	for _, o := range t.observers {
 		go o(t.Pin, t.Status)
 	}
 }
@@ -82,7 +82,7 @@ func NewTactRow(pins []rpio.Pin, realTrue rpio.State) *TactRow {
 		Pins:     pins,
 		RealTrue: realTrue,
 	}
-	for _, p := range(pins) {
+	for _, p := range pins {
 		ret.Tacts = append(ret.Tacts, NewTact(p, realTrue))
 	}
 	return ret
@@ -97,7 +97,7 @@ func (t *TactRow) IsOn(index int) bool {
 
 func (t *TactRow) RowStatus() []bool {
 	var ret []bool
-	for _, p := range(t.Tacts) {
+	for _, p := range t.Tacts {
 		ret = append(ret, p.IsOn())
 	}
 	return ret

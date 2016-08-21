@@ -32,7 +32,7 @@ func (d *DigitalDisplayTM1637) SetNumbers(value string) {
 	pattern, _ := regexp.Compile(`[-|#|\d]\.?`)
 	matches := pattern.FindAllString(value, -1)
 	d.Numbers = []string{}
-	for _, i := range (matches) {
+	for _, i := range matches {
 		d.Numbers = append(d.Numbers, i)
 	}
 }
